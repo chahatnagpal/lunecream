@@ -1,50 +1,71 @@
 /* ==============================================================================
    MAISON SUCRE — DESIGN SYSTEM & CSS VARIABLES
-   Refined, Feminine, Editorial Boutique Cake Studio
+   Stitch Theme: Pastel Cake Studio Website (Pastel Blush & Lilac Atelier)
+   Refined, Feminine, High-End Luxury Cake Studio UI/UX
    ============================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap');
 
 :root {
-  /* --- Brand Color Palette --- */
-  /* Warm Ivory / Creams */
-  --color-bg-ivory: #FDFBF7;
-  --color-bg-cream: #F9F5EE;
-  --color-bg-sand: #F2ECE1;
+  /* --- Stitch Signature Theme: Pastel Blush & Lilac Atelier --- */
+  /* Warm Ivory / Whipped Creams / Sweet Butter */
+  --color-bg-ivory: #FDFBF8;
+  --color-bg-cream: #FAF6F0;
+  --color-bg-sand: #F3ECE3;
   --color-surface-white: #FFFFFF;
-  --color-surface-card: #FAF7F2;
+  --color-surface-card: #FCF9F5;
+  --color-surface-lilac-card: #FAF6FD;
   --color-surface-elevated: #FFFFFF;
 
-  /* Soft Blush Pinks */
+  /* Stitch Signature: Pastel Lilac & Lavender */
+  --color-lilac-whisper: #FAF6FC;
+  --color-lilac-light: #F2E9F7;
+  --color-lilac: #E5D5F2;
+  --color-lilac-soft: #D8C2EB;
+  --color-lilac-accent: #B392D6;
+  --color-lilac-deep: #7E5B9E;
+
+  /* Stitch Signature: Soft Blush Pinks */
+  --color-blush-whisper: #FDF7F5;
   --color-blush-light: #FAF0EC;
   --color-blush: #F4E4DC;
   --color-blush-dark: #E8D0C5;
   --color-rose-nude: #D9BBAE;
+  --color-blush-deep: #C98877;
 
   /* Subtle Warm Brown / Taupe */
   --color-taupe-light: #C2B4AB;
   --color-taupe: #8C7667;
   --color-taupe-dark: #5C4A3E;
-  --color-espresso: #332822;
+  --color-espresso: #2D2329;
 
-  /* Deep Refined Text */
-  --color-text-primary: #211B17;
-  --color-text-secondary: #5A4E47;
-  --color-text-muted: #8E8078;
-  --color-text-light: #B8ADA6;
-  --color-text-inverse: #FAF7F2;
+  /* Deep Refined Text (Rich Plum Charcoal for harmony with Lilac & Blush) */
+  --color-text-primary: #261E28;
+  --color-text-secondary: #584A59;
+  --color-text-muted: #8A7B8B;
+  --color-text-light: #B8AAB8;
+  --color-text-inverse: #FAF6FC;
 
-  /* Small Muted Accents & Luxury Gold */
-  --color-accent-gold: #C5A059;
-  --color-accent-gold-hover: #B28D44;
+  /* Accents & Luxury Champagne Gold Trim */
+  --color-accent-gold: #CCA459;
+  --color-accent-gold-light: #E8D3A2;
+  --color-accent-gold-hover: #B58E44;
   --color-accent-terracotta: #B8735C;
   --color-accent-sage: #8A9A86;
 
+  /* Ethereal Gradients */
+  --gradient-hero-atelier: linear-gradient(135deg, #FCFAF8 0%, #F5ECFA 45%, #FBF0EC 100%);
+  --gradient-lilac-blush: linear-gradient(135deg, #F2E9F7 0%, #FAF0EC 100%);
+  --gradient-card-glow: radial-gradient(circle at 10% 20%, rgba(229, 213, 242, 0.45) 0%, transparent 65%);
+  --gradient-gold-shimmer: linear-gradient(90deg, #CCA459 0%, #E8D3A2 50%, #CCA459 100%);
+
   /* Borders & Dividers */
-  --border-delicate: 1px solid rgba(140, 118, 103, 0.14);
-  --border-subtle: 1px solid rgba(140, 118, 103, 0.22);
-  --border-gold: 1px solid rgba(197, 160, 89, 0.35);
-  --border-focus: 1px solid #C5A059;
+  --border-delicate: 1px solid rgba(140, 118, 103, 0.12);
+  --border-subtle: 1px solid rgba(140, 118, 103, 0.18);
+  --border-lilac: 1px solid rgba(179, 146, 214, 0.28);
+  --border-blush: 1px solid rgba(232, 208, 197, 0.45);
+  --border-gold: 1px solid rgba(204, 164, 89, 0.35);
+  --border-focus: 1px solid #B392D6;
 
   /* Status Colors */
   --color-status-new: #3B82F6;
@@ -98,46 +119,40 @@
   --shadow-soft: 0 6px 24px rgba(51, 40, 34, 0.06);
   --shadow-card: 0 10px 30px rgba(51, 40, 34, 0.07);
   --shadow-elevated: 0 20px 48px rgba(51, 40, 34, 0.12);
-  --shadow-modal: 0 25px 60px rgba(33, 27, 23, 0.22);
-  --shadow-drawer: -10px 0 40px rgba(33, 27, 23, 0.15);
+  --shadow-modal: 0 25px 60px -12px rgba(45, 35, 41, 0.25);
+  --shadow-lilac-glow: 0 8px 30px rgba(179, 146, 214, 0.22);
+  --shadow-gold-glow: 0 6px 20px rgba(204, 164, 89, 0.25);
 
-  /* --- Border Radius --- */
-  /* Restrained, elegant curvature — avoiding overly rounded bubbly elements */
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-pill: 9999px;
+  /* --- Border Radii --- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-full: 9999px;
 
-  /* --- Spacing System --- */
-  --spacing-1: 0.25rem;  /* 4px */
-  --spacing-2: 0.5rem;   /* 8px */
-  --spacing-3: 0.75rem;  /* 12px */
-  --spacing-4: 1rem;     /* 16px */
-  --spacing-5: 1.25rem;  /* 20px */
-  --spacing-6: 1.5rem;   /* 24px */
-  --spacing-8: 2rem;     /* 32px */
-  --spacing-10: 2.5rem;  /* 40px */
-  --spacing-12: 3rem;    /* 48px */
-  --spacing-16: 4rem;    /* 64px */
-  --spacing-20: 5rem;    /* 80px */
-  --spacing-24: 6rem;    /* 96px */
-  --spacing-32: 8rem;    /* 128px */
+  /* --- Transitions & Animations --- */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  /* --- Layout Max Widths --- */
+  /* --- Layout & Spacings --- */
   --container-max-width: 1280px;
-  --container-narrow: 960px;
-  --container-wide: 1440px;
-
-  /* --- Transitions --- */
-  --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-smooth: 0.32s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-
-  /* --- Z-Indices --- */
-  --z-base: 1;
-  --z-nav: 100;
-  --z-drawer: 200;
-  --z-modal: 300;
-  --z-toast: 400;
+  --container-wide-width: 1440px;
+  --container-narrow-width: 980px;
+  
+  --spacing-1: 0.25rem;   /* 4px */
+  --spacing-2: 0.5rem;    /* 8px */
+  --spacing-3: 0.75rem;   /* 12px */
+  --spacing-4: 1rem;      /* 16px */
+  --spacing-5: 1.25rem;   /* 20px */
+  --spacing-6: 1.5rem;    /* 24px */
+  --spacing-8: 2rem;      /* 32px */
+  --spacing-10: 2.5rem;   /* 40px */
+  --spacing-12: 3rem;     /* 48px */
+  --spacing-16: 4rem;     /* 64px */
+  --spacing-20: 5rem;     /* 80px */
+  --spacing-24: 6rem;     /* 96px */
+  --spacing-32: 8rem;     /* 128px */
 }

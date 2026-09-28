@@ -74,6 +74,7 @@ class AdminController {
     document.getElementById('admin-login-view')?.style.setProperty('display', 'none');
     document.getElementById('admin-dashboard-view')?.style.setProperty('display', 'flex');
     this.updateConnectionBadge();
+    this.checkHealth();
     this.loadAllData();
   }
 
@@ -611,9 +612,31 @@ Status: ${req.status}
     const saveBtn = document.getElementById('btn-save-supabase-settings');
     const seedBtn = document.getElementById('btn-seed-database');
     const resetStoreBtn = document.getElementById('btn-reset-mock-store');
+    const checkHealthBtn = document.getElementById('btn-check-db-health');
+    const copySqlBtn = document.getElementById('btn-copy-sql-schema');
 
-    if (urlInput) urlInput.value = localStorage.getItem('MS_SUPABASE_URL') || '';
-    if (keyInput) keyInput.value = localStorage.getItem('MS_SUPABASE_ANON_KEY') || '';
+    // Pre-fill with current config or saved keys
+    if (urlInput) {
+      urlInput.value = localStorage.getItem('MS_SUPABASE_URL') || window.APP_CONFIG.SUPABASE_URL || '';
+    }
+    if (keyInput) {
+      keyInput.value = localStorage.getItem('MS_SUPABASE_ANON_KEY') || window.APP_CONFIG.SUPABASE_ANON_KEY || '';
+    }
+
+    if (checkHealthBtn) {
+      checkHealthBtn.addEventListener('click', () => {
+        this.checkHealth();
+        window.UI.showToast('Testing Supabase connectivity...', 'info');
+      });
+    }
+
+    if (copySqlBtn) {
+      copySqlBtn.addEventListener('click', () => {
+        this.copySqlSchema();
+      });
+    }
+
+    this.loadSchemaPreview();
 
     if (saveBtn) {
       saveBtn.addEventListener('click', () => {
@@ -627,6 +650,7 @@ Status: ${req.status}
           window.APP_CONFIG.SUPABASE_ANON_KEY = key;
           window.db.init();
           this.updateConnectionBadge();
+          this.checkHealth();
           window.UI.showToast('Supabase configuration saved & initialized.', 'success');
         } else {
           localStorage.removeItem('MS_SUPABASE_URL');
@@ -635,6 +659,7 @@ Status: ${req.status}
           window.APP_CONFIG.SUPABASE_ANON_KEY = '';
           window.db.init();
           this.updateConnectionBadge();
+          this.checkHealth();
           window.UI.showToast('Switched to Local Studio Mode.');
         }
       });
@@ -647,6 +672,7 @@ Status: ${req.status}
           seedBtn.textContent = 'Seeding Database...';
           await window.db.seedLiveSupabase();
           window.UI.showToast('Live Supabase database successfully seeded with boutique cakes & categories!', 'success');
+          this.checkHealth();
         } catch (e) {
           window.UI.showToast(e.message || 'Seeding failed.', 'error');
         } finally {
@@ -664,6 +690,103 @@ Status: ${req.status}
           this.loadAllData();
         }
       });
+    }
+  }
+
+  async checkHealth() {
+    const badge = document.getElementById('admin-health-badge');
+    const schemaStatus = document.getElementById('diag-schema-status');
+    const msgBox = document.getElementById('health-message-box');
+    const urlDisplay = document.getElementById('diag-project-url');
+    const refDisplay = document.getElementById('diag-project-ref');
+
+    if (urlDisplay) urlDisplay.textContent = window.APP_CONFIG.SUPABASE_URL || 'Not Configured';
+    if (refDisplay) refDisplay.textContent = window.APP_CONFIG.SUPABASE_PROJECT_REF || 'jnovjohpgyhcfjewimpy';
+
+    if (!badge) return;
+
+    badge.className = 'health-badge checking';
+    badge.innerHTML = '<span>●</span> Checking Status...';
+    if (schemaStatus) schemaStatus.textContent = 'Querying Supabase...';
+    if (msgBox) msgBox.textContent = 'Testing connectivity to your Supabase tables...';
+
+    const result = await window.db.checkLiveHealth();
+    if (result.ok) {
+      badge.className = 'health-badge ok';
+      badge.innerHTML = '<span>●</span> Live Supabase Connected &amp; Ready';
+      if (schemaStatus) {
+        schemaStatus.textContent = 'All Tables Active ✓';
+        schemaStatus.style.color = 'var(--color-status-confirmed)';
+      }
+      if (msgBox) {
+        msgBox.innerHTML = '<strong style="color: var(--color-status-confirmed);">Connection Healthy:</strong> Supabase database tables (categories, products, orders, order_items, custom_requests) are live and synchronized.';
+      }
+    } else if (result.tablesMissing) {
+      badge.className = 'health-badge warning';
+      badge.innerHTML = '<span>●</span> Connected — Tables Pending';
+      if (schemaStatus) {
+        schemaStatus.textContent = 'Tables Missing (PGRST205)';
+        schemaStatus.style.color = 'var(--color-status-preparing)';
+      }
+      if (msgBox) {
+        msgBox.innerHTML = '<strong style="color: var(--color-status-preparing);">Supabase Connected:</strong> Authentication is valid, but the database tables have not been created yet in your Supabase SQL editor. Click <strong>"Copy SQL Schema"</strong> above, then click <strong>"Open SQL Editor ↗"</strong> and run it.';
+      }
+    } else {
+      badge.className = 'health-badge warning';
+      badge.innerHTML = '<span>●</span> Local Studio Fallback';
+      if (schemaStatus) schemaStatus.textContent = 'Using Local Storage';
+      if (msgBox) {
+        msgBox.textContent = result.error || 'Running in resilient local fallback store.';
+      }
+    }
+  }
+
+  async copySqlSchema() {
+    let sql = '';
+    try {
+      const resp = await fetch('sql/schema.sql');
+      if (resp.ok) {
+        sql = await resp.text();
+      }
+    } catch (e) {
+      console.warn('Could not fetch sql/schema.sql dynamically:', e);
+    }
+
+    if (!sql) {
+      const el = document.getElementById('sql-schema-preview-container');
+      sql = el ? el.textContent.trim() : '';
+    }
+
+    if (sql) {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(sql);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = sql;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        window.UI.showToast('PostgreSQL schema copied to clipboard! Paste it into your Supabase SQL Editor.', 'success');
+      } catch (err) {
+        window.UI.showToast('Copied to clipboard!', 'success');
+      }
+    }
+  }
+
+  async loadSchemaPreview() {
+    const previewEl = document.getElementById('sql-schema-preview-container');
+    if (!previewEl) return;
+    try {
+      const resp = await fetch('sql/schema.sql');
+      if (resp.ok) {
+        const text = await resp.text();
+        previewEl.textContent = text;
+      }
+    } catch (e) {
+      console.warn('Failed to load schema preview:', e);
     }
   }
 }

@@ -15,7 +15,7 @@ class ProductDetailsController {
 
   async init() {
     const params = new URLSearchParams(window.location.search);
-    const productId = params.get('id');
+    const productId = params.get('id') || params.get('slug');
 
     if (!productId) {
       window.location.href = 'shop.html';

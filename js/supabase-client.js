@@ -32,16 +32,21 @@ class DatabaseClient {
   }
 
   _initLocalStore() {
+    const CURRENT_STORE_VERSION = '2.2-stitch-pastel';
+    const savedVersion = localStorage.getItem(window.APP_CONFIG.STORAGE_STORE_VERSION);
     const existing = localStorage.getItem(window.APP_CONFIG.STORAGE_MOCK_DB);
-    if (!existing) {
+
+    if (!existing || savedVersion !== CURRENT_STORE_VERSION) {
+      const existingDb = existing ? JSON.parse(existing) : null;
       const initialDb = {
         categories: window.INITIAL_DATA.categories,
         products: window.INITIAL_DATA.products,
-        orders: window.INITIAL_DATA.orders,
-        order_items: [],
-        custom_requests: window.INITIAL_DATA.custom_requests
+        orders: (existingDb && existingDb.orders && existingDb.orders.length > 0) ? existingDb.orders : window.INITIAL_DATA.orders,
+        order_items: (existingDb && existingDb.order_items) ? existingDb.order_items : [],
+        custom_requests: (existingDb && existingDb.custom_requests && existingDb.custom_requests.length > 0) ? existingDb.custom_requests : window.INITIAL_DATA.custom_requests
       };
       localStorage.setItem(window.APP_CONFIG.STORAGE_MOCK_DB, JSON.stringify(initialDb));
+      localStorage.setItem(window.APP_CONFIG.STORAGE_STORE_VERSION, CURRENT_STORE_VERSION);
     }
   }
 
@@ -56,6 +61,24 @@ class DatabaseClient {
 
   isSupabaseLive() {
     return this.isLive;
+  }
+
+  async checkLiveHealth() {
+    if (!this.isLive || !this.client) {
+      return { ok: false, error: 'Client not initialized or missing URL/Key' };
+    }
+    try {
+      const { data, error } = await this.client.from('categories').select('count', { count: 'exact', head: true });
+      if (error) {
+        if (error.code === 'PGRST205' || (error.message && error.message.includes('not find the table'))) {
+          return { ok: false, tablesMissing: true, error: 'Database connected, but schema tables have not been created yet in Supabase SQL editor.' };
+        }
+        return { ok: false, error: error.message };
+      }
+      return { ok: true, message: 'Database connection live and all tables verified!' };
+    } catch (e) {
+      return { ok: false, error: e.message };
+    }
   }
 
   // ============================================================================
@@ -175,11 +198,11 @@ class DatabaseClient {
   async getProductById(id) {
     if (this.isLive) {
       try {
-        const { data, error } = await this.client
-          .from('products')
-          .select('*')
-          .eq('id', id)
-          .single();
+        const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+        const query = this.client.from('products').select('*');
+        const { data, error } = isUuid 
+          ? await query.eq('id', id).single() 
+          : await query.eq('slug', id).single();
         if (error) throw error;
         if (data) return data;
       } catch (err) {

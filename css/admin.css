@@ -341,3 +341,99 @@
     padding: 0 var(--spacing-4);
   }
 }
+
+/* Diagnostic & SQL Schema Card Styles */
+.diagnostic-card {
+  background: var(--color-surface-white);
+  border: var(--border-delicate);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-5);
+  margin-bottom: var(--spacing-6);
+  box-shadow: var(--shadow-subtle);
+}
+
+.diagnostic-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-4);
+  flex-wrap: wrap;
+  gap: var(--spacing-3);
+}
+
+.health-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.health-badge.ok {
+  background-color: var(--color-status-confirmed-bg);
+  color: var(--color-status-confirmed);
+  border: 1px solid rgba(13, 148, 136, 0.3);
+}
+
+.health-badge.warning {
+  background-color: var(--color-status-preparing-bg);
+  color: var(--color-status-preparing);
+  border: 1px solid rgba(217, 119, 6, 0.3);
+}
+
+.health-badge.checking {
+  background-color: var(--color-status-new-bg);
+  color: var(--color-status-new);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.diagnostic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-4);
+  background-color: var(--color-bg-cream);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-xs);
+  margin-bottom: var(--spacing-4);
+}
+
+.diagnostic-item-label {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-taupe);
+  margin-bottom: 2px;
+}
+
+.diagnostic-item-val {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-espresso);
+  word-break: break-all;
+}
+
+.sql-banner-card {
+  background: linear-gradient(135deg, #FAF6FC 0%, #FAF0EC 100%);
+  border: 1px solid rgba(179, 146, 214, 0.35);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-5);
+  margin-bottom: var(--spacing-6);
+}
+
+.sql-code-preview {
+  max-height: 220px;
+  overflow-y: auto;
+  background: var(--color-espresso);
+  color: #E2E8F0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: var(--spacing-4);
+  border-radius: var(--radius-xs);
+  line-height: 1.5;
+  margin-top: var(--spacing-3);
+  white-space: pre;
+}

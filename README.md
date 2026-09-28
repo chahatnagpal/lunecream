@@ -1,15 +1,25 @@
-# Maison Sucre — Haute Cake Studio & Artisanal Confections
+# Maison Sucre — Pastel Cake Studio Website
+### Atelier Home — Pastel Blush & Lilac Collection
 
-A complete, responsive, premium boutique cake and bakery e-commerce platform crafted with **HTML5**, **CSS3**, **Vanilla JavaScript (ES6)**, and real **Supabase** backend database integration.
+A modern, production-ready, premium boutique cake studio and bakery e-commerce platform crafted with pure **HTML5**, **CSS3**, **Vanilla JavaScript (ES6)**, and real **Supabase** backend database integration.
+
+Based on the Google Stitch project:
+- **Title:** *Pastel Cake Studio Website* (Project ID: `10785910662555848309`)
+- **Screen:** *Atelier Home — Pastel Blush & Lilac* (Screen ID: `ff0d8f25dc4e4f2eb4cc7bd5aef8ab11`)
 
 ---
 
-## ✦ Brand & Visual Direction
+## ✦ Brand & Visual Direction (Stitch Atelier Theme)
 
-- **Brand Aesthetic:** Refined, feminine, editorial, and visually sophisticated boutique cake atelier.
-- **Palette:** Warm ivory & alabaster (`#FDFBF7`), soft blush pink (`#F4E4DC`), warm taupe (`#8C7667`), deep espresso charcoal (`#211B17`), and muted 24k gold accents (`#C5A059`).
-- **Typography:** Refined editorial serif headings (*Cormorant Garamond* / *Playfair Display*) paired with clean modern sans-serif body text (*Plus Jakarta Sans*).
-- **Design Rhythm:** Generous whitespace, subtle delicate borders, restrained transitions, and high-fashion cake photography.
+- **Brand Aesthetic:** Soft, feminine, editorial boutique cake atelier with couture pastry presentation.
+- **Palette Tokens:**
+  - **Pastel Lilac & Lavender:** `#FAF6FC` (whisper), `#F2E9F7` (soft mist), `#E5D5F2` (primary lilac), `#B392D6` (accent lilac), `#7E5B9E` (deep lilac).
+  - **Soft Blush Pinks:** `#FDF7F5` (whisper), `#FAF0EC` (soft blush), `#F4E4DC` (primary blush), `#E8D0C5` (rich blush), `#D9BBAE` (rose nude).
+  - **Whipped Creams & Ivory:** `#FDFBF8` (warm ivory), `#FAF6F0` (whipped cream), `#F3ECE3` (sweet butter).
+  - **Champagne Gold Accents:** `#CCA459` (couture gold), `#E8D3A2` (champagne shimmer).
+  - **Rich Plum Charcoal Typography:** `#261E28` (editorial text), `#584A59` (secondary text).
+- **Typography:** Refined editorial serif headings (*Cormorant Garamond* / *Playfair Display*) paired with clean modern sans-serif (*Plus Jakarta Sans*).
+- **Design Rhythm:** Generous editorial whitespace, delicate pastel borders, fluid transitions, and cinematic product showcase.
 
 ---
 
@@ -17,10 +27,10 @@ A complete, responsive, premium boutique cake and bakery e-commerce platform cra
 
 ```
 cake/
-├── index.html                 # Editorial homepage (hero, collections, philosophy, gallery, bespoke banner, reviews, FAQ)
+├── index.html                 # Editorial homepage (hero, Stitch collections, philosophy, cinema reel, gallery, FAQ)
 ├── shop.html                  # Confectionery catalogue (search, filter pills, sorting, in-stock toggle, dynamic cards)
-├── product.html               # Product details (image gallery, tier size price configurator, inscriptions, accordions)
-├── bespoke.html               # Special Feature: Custom Cake Request Studio (interactive occasion, styling & flavor journey)
+├── product.html               # Product details (image gallery, 360° film, tier size price configurator, inscriptions, accordions)
+├── bespoke.html               # Custom Cake Request Studio (interactive occasion, styling & flavor journey with pastel theme)
 ├── checkout.html              # Frictionless guest checkout (fulfillment choice, delivery address, 48h lead-time picker)
 ├── order-confirmation.html    # Order confirmation receipt with reference number and print functionality
 ├── admin.html                 # Protected Admin Portal (stats metrics, orders ledger, products CRUD, categories, Supabase setup)
@@ -29,7 +39,7 @@ cake/
 ├── sql/
 │   └── schema.sql             # Complete PostgreSQL Supabase database schema, RLS policies, and seed data
 ├── css/
-│   ├── variables.css          # Design system tokens, typography scales, luxury color palette, elevations
+│   ├── variables.css          # Design system tokens, typography scales, Stitch pastel color palette, elevations
 │   ├── global.css             # CSS reset, responsive typography, container layouts, animations
 │   ├── components.css         # Navigation, buttons, product cards, cart slide-over drawer, modals, toasts, footer
 │   ├── home.css               # Hero banner, story collage, category showcase, gallery, testimonials, FAQ
@@ -37,14 +47,14 @@ cake/
 │   ├── product.css            # Detail gallery, sizing options, custom inscription input, accordion tabs
 │   ├── checkout.css           # Checkout form cards, fulfillment selector, order summary sidebar, receipt
 │   ├── bespoke.css            # Interactive visual selection cards for custom cake commissions
-│   └── admin.css              # Admin layout, sidebar, metrics cards, data tables, live status selectors
+│   └── admin.css              # Admin layout, sidebar, metrics cards, data tables, live status selectors, diagnostics
 └── js/
-    ├── config.js              # Supabase project URL, Anon Key, admin passkey, and business settings
+    ├── config.js              # Supabase project URL, Anon Key, Stitch metadata, admin passkey, business settings
     ├── data.js                # Initial seed data for categories, boutique cakes, sample orders & custom requests
     ├── supabase-client.js     # Supabase client wrapper with live API integration & resilient local store fallback
     ├── ui.js                  # Global UI helpers: Toast notifications, modals, drawer, formatting
     ├── cart.js                # Shopping cart manager with LocalStorage persistence & slide-over drawer
-    ├── home.js                # Homepage dynamic loaders (featured products, categories, FAQ accordions)
+    ├── home.js                # Homepage dynamic loaders (featured products, categories, FAQ accordions, video switcher)
     ├── shop.js                # Shop filtering, search debouncing, sorting, and dynamic grid rendering
     ├── product.js             # Product details parser, gallery thumbnail switcher, size price calculator
     ├── bespoke.js             # Custom cake request submission to Supabase `custom_requests` table
@@ -64,7 +74,7 @@ To run the website locally on any web browser:
    cd cake
    ```
 
-2. Start a local HTTP server using Python:
+2. Start a local HTTP server:
    ```bash
    python -m http.server 8000
    ```
@@ -79,7 +89,7 @@ To run the website locally on any web browser:
 
 ## 🔑 Admin Portal & Protected Access
 
-- **Admin URL:** `admin.html` (or click **Studio Admin** in the header / footer)
+- **Admin URL:** `admin.html` (or click **Studio Admin** in the header or footer)
 - **Demo Presentation Passkey:** `maison2026`
 
 ### Admin Capabilities:
@@ -88,34 +98,24 @@ To run the website locally on any web browser:
 - **Product Management:** Add new boutique cakes (name, price, category, image URL with live preview, tasting notes, portion guide, availability, featured status), edit existing products, delete products, and 1-click toggle availability (`In Stock`, `Pre-Order Only`, `Sold Out`).
 - **Categories Management:** Create and organize boutique collections.
 - **Custom Cake Inquiries:** Review personalized bespoke inquiries submitted by clients with event date, guest count, flavor palette, and design notes.
-- **Supabase Backend Settings:** Input live Supabase project credentials with 1-click database seeding!
+- **Supabase Backend Settings:** Input live Supabase project credentials with **1-Click SQL Schema Copy** and **Direct SQL Editor link**!
 
 ---
 
 ## 🗄️ Supabase Database Integration
 
-The platform is designed to connect to your real Supabase project:
+The platform is pre-configured to connect to your live Supabase project:
+- **Supabase URL:** `https://jnovjohpgyhcfjewimpy.supabase.co`
+- **Project Ref:** `jnovjohpgyhcfjewimpy`
 
-### Step 1: Execute SQL Schema
-1. In your [Supabase Dashboard](https://supabase.com/dashboard), open your project.
-2. Go to the **SQL Editor** tab.
-3. Open `sql/schema.sql` from this repository, paste the entire SQL code, and click **Run**.
-4. This creates:
-   - `categories` table with RLS
-   - `products` table with category relationships
-   - `orders` table with status tracking
-   - `order_items` table with product associations
-   - `custom_requests` table for bespoke inquiries
-   - Row Level Security (RLS) policies allowing public ordering & secure admin management
-   - Rich initial seed data with high-res boutique photography!
+### 1-Click Database Setup:
+1. In `admin.html`, go to the **Supabase Settings** tab.
+2. Click **"Copy SQL Schema"** (or open [`sql/schema.sql`](file:///c:/Users/SAHIL%20KHAN/Desktop/cake/sql/schema.sql)).
+3. Click **"Open SQL Editor ↗"** (opens [https://supabase.com/dashboard/project/jnovjohpgyhcfjewimpy/sql/new](https://supabase.com/dashboard/project/jnovjohpgyhcfjewimpy/sql/new)).
+4. Paste the SQL schema and click **Run**.
+5. Return to `admin.html` and click **"Check Now"** — the diagnostic card will immediately confirm **Live Supabase Connected & Ready**!
 
-### Step 2: Configure Keys in Admin Panel
-1. Open the Admin Panel (`admin.html`) &rarr; Navigate to **Supabase Settings**.
-2. Enter your **Supabase Project URL** and **Anon Public API Key**.
-3. Click **Save & Connect Supabase**.
-4. The status badge will switch to **Live Supabase Connected**!
-
-*(Note: If you run the project without Supabase keys, it automatically functions with the built-in resilient local storage store so everything can be tested immediately.)*
+*(Note: Even before executing the schema, the store runs smoothly with an instant resilient local storage fallback, ensuring zero broken pages or error screens).*
 
 ---
 

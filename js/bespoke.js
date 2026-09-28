@@ -7,7 +7,7 @@ class BespokeStudioController {
   constructor() {
     this.occasion = 'Wedding';
     this.guestCount = '25-40 guests';
-    this.styleTheme = 'Modern Sculptural';
+    this.styleTheme = 'Pastel Blush & Lilac Atelier';
     this.init();
   }
 

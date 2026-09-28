@@ -281,4 +281,34 @@ INSERT INTO products (id, category_id, category_name, name, slug, description, p
     'In Stock',
     false,
     ARRAY['Vegetarian']
+),
+(
+    '22222222-2222-2222-2222-222222222209',
+    '11111111-1111-1111-1111-111111111101',
+    'Signature Celebration',
+    'Atelier Lilac & Blackberry Chiffon',
+    'atelier-lilac-blackberry-chiffon',
+    'Inspired by the Stitch Atelier Home palette. An ethereal lilac-hued vanilla chiffon layered with wild French blackberry reduction, lavender-infused whipped mascarpone, and edible silver & 24k gold leaf accents.',
+    135.00,
+    'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1000&q=85',
+    'Wild Mountain Blackberry, Lavender Mascarpone, Tahitian Vanilla',
+    '7-inch • Serves 10-12',
+    'In Stock',
+    true,
+    ARRAY['Vegetarian', 'Stitch Signature Edition']
+),
+(
+    '22222222-2222-2222-2222-222222222210',
+    '11111111-1111-1111-1111-111111111103',
+    'Vintage Lambeth & Florals',
+    'Blush Velvet & White Peach Lambeth',
+    'blush-velvet-white-peach-lambeth',
+    'Exquisite Victorian Lambeth over-piped cake draped in velvety blush pink buttercream, filled with organic white peach compote and champagne diplomat cream, accented by handcrafted sugar lace.',
+    130.00,
+    'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1000&q=85',
+    'Blush Peach Compote, Champagne Diplomat, Sweet Butter Meringue',
+    '6-inch • Serves 8-10',
+    'In Stock',
+    true,
+    ARRAY['Vegetarian', 'Stitch Signature Edition']
 );

@@ -1,6 +1,7 @@
 /**
  * MAISON SUCRE — INITIAL SEED DATA
  * High-End Artisanal Cake Studio Initial Catalogue & Reference Data
+ * Stitch Theme: Pastel Cake Studio Website (Pastel Blush & Lilac Atelier)
  */
 
 const INITIAL_CATEGORIES = [
@@ -193,6 +194,43 @@ const INITIAL_PRODUCTS = [
     availability: 'In Stock',
     featured: false,
     dietary_tags: ['Vegetarian']
+  },
+  {
+    id: 'prod-09',
+    category_id: 'cat-01',
+    category_name: 'Signature Celebration',
+    name: 'Atelier Lilac & Blackberry Chiffon',
+    slug: 'atelier-lilac-blackberry-chiffon',
+    description: 'Inspired by the Stitch Atelier Home palette. An ethereal lilac-hued vanilla chiffon layered with wild French blackberry reduction, lavender-infused whipped mascarpone, and edible silver & 24k gold leaf accents.',
+    price: 135.00,
+    image_url: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1000&q=85',
+    gallery_images: [
+      'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=85'
+    ],
+    tasting_notes: 'Wild Mountain Blackberry, Lavender Mascarpone, Tahitian Vanilla',
+    portion_guide: '7-inch • Serves 10-12',
+    availability: 'In Stock',
+    featured: true,
+    dietary_tags: ['Vegetarian', 'Stitch Signature Edition']
+  },
+  {
+    id: 'prod-10',
+    category_id: 'cat-03',
+    category_name: 'Vintage Lambeth & Florals',
+    name: 'Blush Velvet & White Peach Lambeth',
+    slug: 'blush-velvet-white-peach-lambeth',
+    description: 'Exquisite Victorian Lambeth over-piped cake draped in velvety blush pink buttercream, filled with organic white peach compote and champagne diplomat cream, accented by handcrafted sugar lace.',
+    price: 130.00,
+    image_url: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1000&q=85',
+    gallery_images: [
+      'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1000&q=85'
+    ],
+    tasting_notes: 'Blush Peach Compote, Champagne Diplomat, Sweet Butter Meringue',
+    portion_guide: '6-inch • Serves 8-10',
+    availability: 'In Stock',
+    featured: true,
+    dietary_tags: ['Vegetarian', 'Stitch Signature Edition']
   }
 ];
 
@@ -208,24 +246,24 @@ const INITIAL_ORDERS = [
     preferred_date: '2026-10-04',
     preferred_time: '2:00 PM - 4:00 PM',
     special_notes: 'Please write "Joyeux Anniversaire Chloé" on the gold plaque.',
-    subtotal: 125.00,
+    subtotal: 135.00,
     delivery_fee: 25.00,
-    tax: 10.00,
-    total_amount: 160.00,
+    tax: 10.80,
+    total_amount: 170.80,
     payment_method: 'Cash on Delivery',
     status: 'Preparing',
     created_at: '2026-09-26T14:30:00Z',
     items: [
       {
-        product_id: 'prod-01',
-        product_name: "L'Aurore Pistachio & Rose",
-        product_image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=400&q=85',
-        unit_price: 125.00,
+        product_id: 'prod-09',
+        product_name: 'Atelier Lilac & Blackberry Chiffon',
+        product_image: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=400&q=85',
+        unit_price: 135.00,
         quantity: 1,
-        size_selected: '6-inch (8-10 Servings)',
+        size_selected: '7-inch (10-12 Servings)',
         custom_inscription: 'Joyeux Anniversaire Chloé',
-        flavor_choice: 'Sicilian Pistachio & Raspberry',
-        total_price: 125.00
+        flavor_choice: 'Blackberry & Lavender Mascarpone',
+        total_price: 135.00
       }
     ]
   },
@@ -273,7 +311,7 @@ const INITIAL_CUSTOM_REQUESTS = [
     occasion: 'Wedding',
     guest_count: '80-100 guests',
     flavor_preference: 'Earl Grey Lavender bottom tier, Tahitian Vanilla Berry top tier',
-    style_theme: 'Modern Sculptural with Pressed Florals & Gold Leaf',
+    style_theme: 'Pastel Lilac & Blush Sculptural with Pressed Florals & Gold Leaf',
     event_date: '2026-11-14',
     budget_range: '$600 - $900',
     reference_image_url: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=800&q=85',

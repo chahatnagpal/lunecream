@@ -345,15 +345,93 @@
              ================================================================== -->
         <div class="admin-tab-content" id="tab-settings" style="display: none;">
           
-          <div class="admin-panel" style="max-width: 760px;">
+          <div class="admin-panel" style="max-width: 840px;">
             <div class="admin-panel-header">
-              <h3>Supabase Backend Configuration</h3>
+              <h3>Supabase Backend &amp; Database Settings</h3>
             </div>
 
             <div style="padding: var(--spacing-6);">
-              <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-bottom: var(--spacing-6); line-height: 1.7;">
-                Connect this website to your real Supabase project by entering your project credentials below. 
-                Your settings are safely stored in your browser and used by all customer and admin actions.
+              
+              <!-- 1. Live Connection Diagnostic Card -->
+              <div class="diagnostic-card">
+                <div class="diagnostic-card-header">
+                  <div>
+                    <h4 style="font-size: 1.1rem; margin-bottom: 2px;">Connection Health &amp; Diagnostics</h4>
+                    <span style="font-size: var(--font-size-xs); color: var(--color-taupe);">Real-time status of your Supabase project link</span>
+                  </div>
+                  <div style="display: flex; gap: var(--spacing-2); align-items: center;">
+                    <span id="admin-health-badge" class="health-badge checking">
+                      <span>●</span> Checking Status...
+                    </span>
+                    <button type="button" id="btn-check-db-health" class="btn btn-outline btn-sm" title="Re-check Supabase Connection">
+                      Check Now
+                    </button>
+                  </div>
+                </div>
+
+                <div class="diagnostic-grid">
+                  <div>
+                    <div class="diagnostic-item-label">Project URL</div>
+                    <div class="diagnostic-item-val" id="diag-project-url">https://jnovjohpgyhcfjewimpy.supabase.co</div>
+                  </div>
+                  <div>
+                    <div class="diagnostic-item-label">Project Ref</div>
+                    <div class="diagnostic-item-val" id="diag-project-ref">jnovjohpgyhcfjewimpy</div>
+                  </div>
+                  <div>
+                    <div class="diagnostic-item-label">API Key State</div>
+                    <div class="diagnostic-item-val" id="diag-key-status" style="color: var(--color-status-confirmed);">Valid Public Key</div>
+                  </div>
+                  <div>
+                    <div class="diagnostic-item-label">Active Schema</div>
+                    <div class="diagnostic-item-val" id="diag-schema-status">Verifying tables...</div>
+                  </div>
+                </div>
+
+                <div id="health-message-box" style="font-size: var(--font-size-xs); color: var(--color-text-secondary); line-height: 1.5; padding: 8px 12px; background: var(--color-bg-cream); border-radius: var(--radius-xs);">
+                  Testing connectivity to your Supabase tables...
+                </div>
+              </div>
+
+              <!-- 2. 1-Click SQL Schema Setup Banner -->
+              <div class="sql-banner-card">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: var(--spacing-4); flex-wrap: wrap;">
+                  <div>
+                    <h4 style="font-size: 1.125rem; color: var(--color-espresso); margin-bottom: 4px;">
+                      ✦ 1-Click Database Setup &amp; Migration
+                    </h4>
+                    <p style="font-size: var(--font-size-xs); color: var(--color-text-secondary); max-width: 520px; line-height: 1.6;">
+                      Set up all 5 studio tables (<strong>categories</strong>, <strong>products</strong>, <strong>orders</strong>, <strong>order_items</strong>, <strong>custom_requests</strong>) and seed them with the Stitch Pastel Blush &amp; Lilac cakes in 1 step.
+                    </p>
+                  </div>
+                  <div style="display: flex; gap: var(--spacing-3); flex-wrap: wrap;">
+                    <button type="button" id="btn-copy-sql-schema" class="btn btn-primary btn-sm" style="display: inline-flex; align-items: center; gap: 6px;">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                      </svg>
+                      Copy SQL Schema
+                    </button>
+                    <a href="https://supabase.com/dashboard/project/jnovjohpgyhcfjewimpy/sql/new" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 6px;">
+                      Open SQL Editor ↗
+                    </a>
+                  </div>
+                </div>
+
+                <details style="margin-top: var(--spacing-4);">
+                  <summary style="font-size: var(--font-size-xs); font-weight: 600; color: var(--color-lilac-deep); cursor: pointer; user-select: none;">
+                    ▸ View / Inspect PostgreSQL Schema Script (sql/schema.sql)
+                  </summary>
+                  <div class="sql-code-preview" id="sql-schema-preview-container">
+-- Loading schema preview...
+                  </div>
+                </details>
+              </div>
+
+              <!-- 3. Supabase Credentials Configuration Form -->
+              <h4 style="font-size: 1.1rem; margin-bottom: var(--spacing-2);">Supabase API Credentials</h4>
+              <p style="font-size: var(--font-size-xs); color: var(--color-taupe); margin-bottom: var(--spacing-4);">
+                These keys connect both customer orders and the studio admin dashboard directly to your live Supabase database.
               </p>
 
               <div class="form-group">
@@ -379,17 +457,15 @@
 
               <hr style="margin: var(--spacing-8) 0; border: none; border-top: var(--border-delicate);">
 
+              <!-- 4. Resilient Fallback Reset -->
               <h4 style="font-size: 1.125rem; margin-bottom: var(--spacing-2);">Local Studio Fallback Reset</h4>
               <p style="font-size: var(--font-size-xs); color: var(--color-taupe); margin-bottom: var(--spacing-4);">
-                Reset local demo orders and catalogue products back to the default studio seed data.
+                Reset local demo orders and catalogue products back to the default Stitch pastel studio dataset.
               </p>
               <button type="button" id="btn-reset-mock-store" class="btn btn-outline btn-sm">
                 Reset Demo Studio Store
               </button>
 
-              <div style="margin-top: var(--spacing-8); padding: var(--spacing-4); background-color: var(--color-bg-cream); border-radius: var(--radius-xs); font-size: var(--font-size-xs); color: var(--color-taupe); line-height: 1.6;">
-                <strong>SQL Schema File:</strong> You can find the complete PostgreSQL schema with all tables, constraints, RLS policies, and sample seed data in <code style="font-family: var(--font-mono); color: var(--color-espresso);">sql/schema.sql</code>. Copy and paste its content into your Supabase SQL Editor.
-              </div>
             </div>
           </div>
 
