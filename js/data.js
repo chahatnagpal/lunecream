@@ -18,7 +18,7 @@ const INITIAL_CATEGORIES = [
     name: 'Wedding & Bridal Tiers',
     slug: 'wedding-bridal',
     description: 'Architectural multi-tiered cakes adorned with delicate wafer florals, silk ribbons, and subtle textures.',
-    image_url: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=800&q=85',
+    image_url: 'https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=85',
     display_order: 2
   },
   {
@@ -94,10 +94,10 @@ const INITIAL_PRODUCTS = [
     slug: 'symphonie-blanche-bridal-tier',
     description: 'A breathtaking two-tiered sculptural cake featuring Tahitian vanilla bean chiffon, delicate elderflower curd, and fresh white peach compote, finished in ivory velvet texture and hand-crafted sugar peonies.',
     price: 280.00,
-    image_url: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1000&q=85',
+    image_url: 'https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=1000&q=85',
     gallery_images: [
-      'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1000&q=85',
-      'https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=1000&q=85'
+      'https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1542826438-bd32f43d626f?auto=format&fit=crop&w=1000&q=85'
     ],
     tasting_notes: 'Tahitian Vanilla Bean, St-Germain Elderflower, Ripe White Peach',
     portion_guide: '2-Tier • Serves 28-35',
@@ -203,9 +203,9 @@ const INITIAL_PRODUCTS = [
     slug: 'atelier-lilac-blackberry-chiffon',
     description: 'Inspired by the Stitch Atelier Home palette. An ethereal lilac-hued vanilla chiffon layered with wild French blackberry reduction, lavender-infused whipped mascarpone, and edible silver & 24k gold leaf accents.',
     price: 135.00,
-    image_url: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1000&q=85',
+    image_url: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=1000&q=85',
     gallery_images: [
-      'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1000&q=85',
+      'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=1000&q=85',
       'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=85'
     ],
     tasting_notes: 'Wild Mountain Blackberry, Lavender Mascarpone, Tahitian Vanilla',
@@ -257,7 +257,7 @@ const INITIAL_ORDERS = [
       {
         product_id: 'prod-09',
         product_name: 'Atelier Lilac & Blackberry Chiffon',
-        product_image: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=400&q=85',
+        product_image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=400&q=85',
         unit_price: 135.00,
         quantity: 1,
         size_selected: '7-inch (10-12 Servings)',
@@ -289,7 +289,7 @@ const INITIAL_ORDERS = [
       {
         product_id: 'prod-03',
         product_name: 'Symphonie Blanche Bridal Tier',
-        product_image: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=400&q=85',
+        product_image: 'https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=400&q=85',
         unit_price: 280.00,
         quantity: 1,
         size_selected: '2-Tier (28-35 Servings)',
@@ -314,7 +314,7 @@ const INITIAL_CUSTOM_REQUESTS = [
     style_theme: 'Pastel Lilac & Blush Sculptural with Pressed Florals & Gold Leaf',
     event_date: '2026-11-14',
     budget_range: '$600 - $900',
-    reference_image_url: 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=800&q=85',
+    reference_image_url: 'https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=85',
     notes: 'Outdoor autumn botanical wedding in the Hudson Valley. Venue has chilled storage.',
     status: 'In Review',
     created_at: '2026-09-25T11:20:00Z'

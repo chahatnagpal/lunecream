@@ -155,7 +155,7 @@ CREATE POLICY "Admins can delete custom requests" ON custom_requests FOR DELETE 
 -- Insert Categories
 INSERT INTO categories (id, name, slug, description, image_url, display_order) VALUES
 ('11111111-1111-1111-1111-111111111101', 'Signature Celebration', 'signature-celebration', 'Sculptural masterpieces designed with organic botanicals, edible gold, and refined flavor profiles.', 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=85', 1),
-('11111111-1111-1111-1111-111111111102', 'Wedding & Bridal Tiers', 'wedding-bridal', 'Architectural multi-tiered cakes adorned with delicate wafer florals, silk ribbons, and subtle textures.', 'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=800&q=85', 2),
+('11111111-1111-1111-1111-111111111102', 'Wedding & Bridal Tiers', 'wedding-bridal', 'Architectural multi-tiered cakes adorned with delicate wafer florals, silk ribbons, and subtle textures.', 'https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=85', 2),
 ('11111111-1111-1111-1111-111111111103', 'Vintage Lambeth & Florals', 'vintage-lambeth', 'Intricate over-piped Victorian ruffles, maraschino cherries, and pastel royal icing artistry.', 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=85', 3),
 ('11111111-1111-1111-1111-111111111104', 'Petite Gâteaux & Treats', 'petite-treats', 'Individual entremets, French macarons, and delicate miniature confections for intimate tea gatherings.', 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=85', 4),
 ('11111111-1111-1111-1111-111111111105', 'Botanical & Seasonal', 'botanical-seasonal', 'Infused with pressed wildflowers, hand-harvested lavender, citrus blossoms, and seasonal fruits.', 'https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=800&q=85', 5);
@@ -200,7 +200,7 @@ INSERT INTO products (id, category_id, category_name, name, slug, description, p
     'symphonie-blanche-bridal-tier',
     'A breathtaking two-tiered sculptural cake featuring Tahitian vanilla bean chiffon, delicate elderflower curd, and fresh white peach compote, finished in ivory velvet texture and hand-crafted sugar peonies.',
     280.00,
-    'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1000&q=85',
+    'https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=1000&q=85',
     'Tahitian Vanilla Bean, St-Germain Elderflower, Ripe White Peach',
     '2-Tier • Serves 28-35',
     'Pre-Order Only',
@@ -290,7 +290,7 @@ INSERT INTO products (id, category_id, category_name, name, slug, description, p
     'atelier-lilac-blackberry-chiffon',
     'Inspired by the Stitch Atelier Home palette. An ethereal lilac-hued vanilla chiffon layered with wild French blackberry reduction, lavender-infused whipped mascarpone, and edible silver & 24k gold leaf accents.',
     135.00,
-    'https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1000&q=85',
+    'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=1000&q=85',
     'Wild Mountain Blackberry, Lavender Mascarpone, Tahitian Vanilla',
     '7-inch • Serves 10-12',
     'In Stock',
