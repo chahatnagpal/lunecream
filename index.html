@@ -155,7 +155,7 @@
 
           <div class="hero-image-frame" id="hero-media-frame">
             <img id="hero-img-element" src="https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1000&q=85" alt="Sculptural Tiered Wedding Cake by Maison Sucre">
-            <video id="hero-video-element" src="https://assets.mixkit.co/videos/preview/mixkit-decorating-a-cake-with-chocolate-cream-41484-large.mp4" poster="https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1000&q=85" autoplay muted loop playsinline style="display: none;"></video>
+            <video id="hero-video-element" src="https://cdn.coverr.co/videos/coverr-decorating-a-cake-9004/720p.mp4" poster="https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1000&q=85" autoplay muted loop playsinline style="display: none;"></video>
           </div>
 
           <!-- Floating Info Card -->
@@ -166,6 +166,44 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- Editorial Brand Film Section (Cinematic Bakery Video) -->
+  <section class="editorial-film-section" id="editorial-film" aria-label="Editorial Brand Film">
+    <div class="editorial-film-container">
+      <div class="editorial-film-media-frame">
+        <video 
+          id="editorial-film-video" 
+          class="editorial-film-video" 
+          autoplay 
+          muted 
+          loop 
+          playsinline 
+          preload="metadata"
+          poster="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=85">
+          <source src="https://cdn.coverr.co/videos/coverr-decorating-a-cake-9004/1080p.mp4" type="video/mp4">
+          <source src="https://cdn.coverr.co/videos/coverr-decorating-a-cake-9004/720p.mp4" type="video/mp4">
+        </video>
+        <div class="editorial-film-scrim"></div>
+        <div class="editorial-film-overlay">
+          <div class="editorial-film-badge">
+            <span class="badge-dot"></span>
+            <span>Maison Atelier &bull; Autumn 2026 Film</span>
+          </div>
+          <h2 class="editorial-film-heading">Made Slowly. Made Beautifully.</h2>
+          <p class="editorial-film-description">
+            From the velvet fold of French buttercream to delicate hand-piped ruffles and organic botanicals. Experience the quiet poetry of Parisian haute pâtisserie baked fresh daily in Soho.
+          </p>
+          <div class="editorial-film-actions">
+            <a href="shop.html" class="btn btn-primary btn-lg">Explore The Cake Collection &rarr;</a>
+            <button class="btn-film-sound" id="btn-editorial-sound-toggle" aria-label="Toggle Film Sound">
+              <span id="editorial-sound-icon">🔇</span>
+              <span id="editorial-sound-text">Sound Off</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -262,8 +300,24 @@
         </p>
       </div>
 
+      <!-- Cinema Chapters Selector -->
+      <div class="cinema-chapter-nav" id="cinema-chapters-nav">
+        <button class="cinema-chapter-btn active" data-video="https://cdn.coverr.co/videos/coverr-decorating-a-cake-9004/1080p.mp4" data-poster="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=85">
+          <span>01</span> Buttercream Frosting
+        </button>
+        <button class="cinema-chapter-btn" data-video="https://cdn.coverr.co/videos/coverr-red-velvet-cake-6756/1080p.mp4" data-poster="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=1200&q=85">
+          <span>02</span> The Velvet Slice
+        </button>
+        <button class="cinema-chapter-btn" data-video="https://cdn.coverr.co/videos/coverr-putting-cream-in-a-piping-bag-8544/1080p.mp4" data-poster="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1200&q=85">
+          <span>03</span> Piping &amp; Craft
+        </button>
+        <button class="cinema-chapter-btn" data-video="https://cdn.coverr.co/videos/coverr-valentine-s-day-cake-9154/1080p.mp4" data-poster="https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1200&q=85">
+          <span>04</span> Rotating Centerpiece
+        </button>
+      </div>
+
       <div class="cinema-player-frame">
-        <video id="atelier-cinema-video" class="cinema-video-el" src="https://assets.mixkit.co/videos/preview/mixkit-decorating-a-cake-with-chocolate-cream-41484-large.mp4" poster="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=85" loop playsinline muted autoplay></video>
+        <video id="atelier-cinema-video" class="cinema-video-el" src="https://cdn.coverr.co/videos/coverr-decorating-a-cake-9004/1080p.mp4" poster="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=85" loop playsinline muted autoplay></video>
         
         <div class="cinema-controls-bar">
           <div style="display: flex; gap: var(--spacing-3); align-items: center;">
@@ -616,7 +670,7 @@
   <div class="modal-backdrop" id="atelier-film-modal">
     <div class="modal-container" style="max-width: 900px; padding: 0; background: #0E0C0B; border: 1px solid rgba(197, 160, 89, 0.4); overflow: hidden;">
       <div style="position: relative; aspect-ratio: 16 / 9; background: #000;">
-        <video id="modal-cinema-video" style="width: 100%; height: 100%; object-fit: cover;" src="https://assets.mixkit.co/videos/preview/mixkit-decorating-a-cake-with-chocolate-cream-41484-large.mp4" controls playsinline></video>
+        <video id="modal-cinema-video" style="width: 100%; height: 100%; object-fit: cover;" src="https://cdn.coverr.co/videos/coverr-decorating-a-cake-9004/1080p.mp4" controls playsinline></video>
         <button class="modal-close-btn" style="position: absolute; top: 12px; right: 12px; z-index: 10; background: rgba(0,0,0,0.6); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">&times;</button>
       </div>
       <div style="padding: var(--spacing-4) var(--spacing-6); display: flex; justify-content: space-between; align-items: center; color: var(--color-bg-ivory); background: #161311;">
