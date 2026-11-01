@@ -691,6 +691,60 @@ Status: ${req.status}
         }
       });
     }
+
+    // AI Atelier Concierge Chatbot Settings
+    const chatbotUrlInput = document.getElementById('settings-chatbot-proxy-url');
+    const saveChatbotBtn = document.getElementById('btn-save-chatbot-settings');
+    const testChatbotBtn = document.getElementById('btn-test-chatbot-proxy');
+
+    if (chatbotUrlInput) {
+      chatbotUrlInput.value = localStorage.getItem('MS_CHATBOT_PROXY_URL') || (window.APP_CONFIG && window.APP_CONFIG.CHATBOT_PROXY_URL) || '';
+    }
+
+    if (saveChatbotBtn && chatbotUrlInput) {
+      saveChatbotBtn.addEventListener('click', () => {
+        const val = chatbotUrlInput.value.trim();
+        if (val) {
+          localStorage.setItem('MS_CHATBOT_PROXY_URL', val);
+          if (window.APP_CONFIG) window.APP_CONFIG.CHATBOT_PROXY_URL = val;
+          window.UI.showToast('Cloudflare Worker Proxy URL saved.', 'success');
+        } else {
+          localStorage.removeItem('MS_CHATBOT_PROXY_URL');
+          if (window.APP_CONFIG) window.APP_CONFIG.CHATBOT_PROXY_URL = '';
+          window.UI.showToast('Cleared proxy URL. Using local atelier fallback mode.');
+        }
+      });
+    }
+
+    if (testChatbotBtn && chatbotUrlInput) {
+      testChatbotBtn.addEventListener('click', async () => {
+        const val = chatbotUrlInput.value.trim();
+        if (!val) {
+          window.UI.showToast('Please enter a Cloudflare Worker URL first.', 'error');
+          return;
+        }
+        testChatbotBtn.disabled = true;
+        testChatbotBtn.textContent = 'Testing Proxy...';
+        try {
+          const res = await fetch(val, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: 'Hello Maison Sucre' })
+          });
+          const data = await res.json();
+          if (res.ok && data.reply) {
+            window.UI.showToast(`✦ Connected! Gemini 3 responded (${data.model || 'Gemini 3'}): "${data.reply.slice(0, 50)}..."`, 'success');
+          } else {
+            window.UI.showToast(`Worker error: ${data.error || res.statusText}`, 'error');
+          }
+        } catch (e) {
+          window.UI.showToast(`Connection failed: ${e.message}`, 'error');
+        } finally {
+          testChatbotBtn.disabled = false;
+          testChatbotBtn.textContent = 'Test Gemini 3 Proxy Connection';
+        }
+      });
+    }
   }
 
   async checkHealth() {

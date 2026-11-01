@@ -457,6 +457,29 @@
 
               <hr style="margin: var(--spacing-8) 0; border: none; border-top: var(--border-delicate);">
 
+              <!-- 4. AI Atelier Concierge Proxy (Google Gemini 3) -->
+              <h4 style="font-size: 1.1rem; margin-bottom: var(--spacing-2);">✦ AI Atelier Concierge (Google Gemini 3 Proxy)</h4>
+              <p style="font-size: var(--font-size-xs); color: var(--color-taupe); margin-bottom: var(--spacing-4);">
+                Connect your Cloudflare Worker proxy containing your Gemini 3 secret. When set, website visitors chat with live Gemini 3 through your secure proxy.
+              </p>
+
+              <div class="form-group">
+                <label class="form-label" for="settings-chatbot-proxy-url">Cloudflare Worker Proxy URL</label>
+                <input type="url" id="settings-chatbot-proxy-url" class="form-control" placeholder="https://maison-sucre-ai-proxy.YOUR_SUBDOMAIN.workers.dev">
+                <span class="helper-hint">Leave blank to use the built-in resilient local atelier concierge fallback.</span>
+              </div>
+
+              <div style="display: flex; gap: var(--spacing-3); margin-top: var(--spacing-4); flex-wrap: wrap;">
+                <button type="button" id="btn-save-chatbot-settings" class="btn btn-primary btn-sm">
+                  Save Proxy URL
+                </button>
+                <button type="button" id="btn-test-chatbot-proxy" class="btn btn-secondary btn-sm">
+                  Test Gemini 3 Proxy Connection
+                </button>
+              </div>
+
+              <hr style="margin: var(--spacing-8) 0; border: none; border-top: var(--border-delicate);">
+
               <!-- 4. Resilient Fallback Reset -->
               <h4 style="font-size: 1.125rem; margin-bottom: var(--spacing-2);">Local Studio Fallback Reset</h4>
               <p style="font-size: var(--font-size-xs); color: var(--color-taupe); margin-bottom: var(--spacing-4);">

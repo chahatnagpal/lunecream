@@ -1,0 +1,9 @@
+name = "maison-sucre-ai-proxy"
+main = "worker.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+GEMINI_MODEL = "gemini-3-flash-preview"
+
+# GEMINI_API_KEY should be set via secret:
+# npx wrangler secret put GEMINI_API_KEY

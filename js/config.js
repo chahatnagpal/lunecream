@@ -37,7 +37,14 @@ const CONFIG = {
   STORAGE_CART_KEY: 'maison_sucre_cart',
   STORAGE_ADMIN_SESSION: 'maison_sucre_admin_session',
   STORAGE_MOCK_DB: 'maison_sucre_db',
-  STORAGE_STORE_VERSION: 'maison_sucre_version'
+  STORAGE_STORE_VERSION: 'maison_sucre_version',
+
+  // AI Atelier Concierge Chatbot (Google Gemini 3 via Cloudflare Worker Proxy)
+  // Set your deployed Cloudflare Worker URL below:
+  CHATBOT_PROXY_URL: localStorage.getItem('MS_CHATBOT_PROXY_URL') || '',
+  CHATBOT_STUDIO_NAME: 'Maison Sucre Haute Cake Studio',
+  CHATBOT_STUDIO_LOCATION: '148 Mercer Street, Soho, New York, NY 10012',
+  CHATBOT_HOURS: 'Tue – Sun: 10:00 AM – 6:30 PM (Closed Mondays)'
 };
 
 // Export configuration globally

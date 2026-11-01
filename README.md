@@ -126,3 +126,80 @@ The platform is pre-configured to connect to your live Supabase project:
 3. **Frictionless Guest Ordering:** On `checkout.html`, customers choose between Soho studio pickup or courier delivery, select a delivery date (with 48h lead-time enforcement), and submit their order directly to Supabase.
 4. **Bespoke Commissions:** On `bespoke.html`, clients submit custom tiered inquiries with visual occasion, guest count, and flavor preference cards.
 5. **Studio Management:** The bakery owner manages orders, updates statuses, edits cake descriptions, and adjusts inventory from `admin.html`.
+
+---
+
+## ✦ AI Atelier Concierge Chatbot (Google Gemini 3 API)
+
+A minimal, luxury AI concierge integrated directly into every store page.
+
+### Features:
+- **3D Floating Interactive Button:** Styled in pastel blush, lilac, and champagne gold with a pulsating indicator and smooth float animation.
+- **Strict Brand Knowledge:** Knows everything about Maison Sucre: Soho address (148 Mercer St), operating hours (Tue–Sun: 10:00 AM – 6:30 PM, closed Mon), exact cake prices, portion guides, $25 flat delivery / FREE over $250, 48h lead times, bespoke tiers ($250–$1,500+), ingredients (84% Normandy butter, Valrhona chocolate, organic Tahitian vanilla, pressed botanicals).
+- **Trilingual Fluency:** Seamlessly answers visitors in **English**, **Roman Urdu** (e.g., *"Prices kya hain?"*), and **Urdu (اردو)**.
+- **Strict Anti-Hallucination & Scope:** Never invents facts or prices. Politely declines unrelated topics and provides verified studio contact info.
+- **Zero API Key Leakage:** The Google Gemini API key is stored strictly in `private/` (git-ignored) and as an encrypted secret in a free Cloudflare Worker. The public frontend only talks to the proxy.
+
+---
+
+## 🔒 Cloudflare Worker Proxy Deployment (2-Minute Setup)
+
+### Step 1: Open Cloudflare Dashboard
+1. Go to [dash.cloudflare.com](https://dash.cloudflare.com/) (sign up for free if you don't have an account).
+2. On the left sidebar, click **Compute (Workers & Pages)** &rarr; **Workers & Pages**.
+3. Click **Create application** &rarr; **Create Worker**.
+4. Name your worker: `maison-sucre-ai-proxy` and click **Deploy**.
+
+### Step 2: Paste the Worker Code
+1. Click **Edit code** on your newly created Worker.
+2. Replace all existing code with the complete code inside [`cloudflare-worker/worker.js`](cloudflare-worker/worker.js).
+3. Click **Deploy** in the top right.
+
+### Step 3: Add Your Gemini API Key as an Encrypted Secret
+1. Click the back arrow (&larr;) to return to your Worker overview.
+2. Click **Settings** &rarr; **Variables and Secrets**.
+3. Under **Secrets**, click **Add secret**:
+   - **Variable name:** `GEMINI_API_KEY`
+   - **Value:** Paste your API key from `private/gemini-api-key.txt`.
+4. Click **Deploy** / **Save**.
+5. *(Optional)* Under **Environment Variables**, you can add `GEMINI_MODEL` with value `gemini-3-flash-preview` (default).
+
+### Step 4: Connect to Your Website
+1. Copy your worker URL (e.g. `https://maison-sucre-ai-proxy.YOUR_SUBDOMAIN.workers.dev`).
+2. Open [`js/config.js`](js/config.js) and paste it into `CHATBOT_PROXY_URL`:
+   ```javascript
+   CHATBOT_PROXY_URL: 'https://maison-sucre-ai-proxy.YOUR_SUBDOMAIN.workers.dev',
+   ```
+   *(Or click the **⚙** gear icon inside the floating chat window on your website and paste it there!)*
+
+---
+
+## 🚀 Publishing to GitHub & GitHub Pages
+
+Follow these simple steps to push your public store to GitHub:
+
+```bash
+# 1. Check git status (confirm private/ is ignored)
+git status
+
+# 2. Stage all public website files
+git add .
+
+# 3. Commit the changes
+git commit -m "feat: add Maison Sucre store with 3D AI Atelier Concierge powered by Gemini 3"
+
+# 4. Set main branch and push
+git branch -M main
+git remote add origin https://github.com/chahatnagpal/lunecream.git
+git push -u origin main
+```
+
+### Enable GitHub Pages:
+1. Open your repository on GitHub: `https://github.com/chahatnagpal/lunecream`.
+2. Go to **Settings** &rarr; **Pages** (under "Code and automation" in the left sidebar).
+3. Under **Build and deployment** &rarr; **Source**: Select **Deploy from a branch**.
+4. Under **Branch**: Select `main` and folder `/ (root)`.
+5. Click **Save**.
+6. In 1 to 2 minutes, your website will be live at:
+   **`https://chahatnagpal.github.io/lunecream/`**
+

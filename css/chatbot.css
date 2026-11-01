@@ -1,0 +1,717 @@
+/* ==============================================================================
+   MAISON SUCRE — AI ATELIER CONCIERGE CHATBOT STYLES
+   Stitch Theme: Pastel Blush & Lilac Atelier • 3D Floating Luxury Concierge
+   ============================================================================== */
+
+/* --- 1. Floating Chat Trigger Button (3D Animated) --- */
+.ms-chatbot-trigger {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #FAF6FD 0%, #F5ECFA 45%, #FBF0EC 100%);
+  border: 1px solid rgba(204, 164, 89, 0.45);
+  border-radius: 999px;
+  padding: 8px 18px 8px 10px;
+  cursor: pointer;
+  box-shadow: 
+    0 16px 36px rgba(126, 91, 158, 0.22),
+    0 6px 16px rgba(204, 164, 89, 0.18),
+    inset 0 1px 3px rgba(255, 255, 255, 0.95),
+    inset 0 -2px 4px rgba(126, 91, 158, 0.12);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(0);
+  animation: msFloat3D 4s ease-in-out infinite;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ms-chatbot-trigger:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 
+    0 22px 44px rgba(126, 91, 158, 0.28),
+    0 8px 20px rgba(204, 164, 89, 0.25),
+    inset 0 1px 3px rgba(255, 255, 255, 1),
+    inset 0 -2px 4px rgba(126, 91, 158, 0.15);
+  border-color: rgba(204, 164, 89, 0.7);
+}
+
+.ms-chatbot-trigger:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+@keyframes msFloat3D {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-0.5deg);
+  }
+}
+
+/* 3D Orb Avatar Icon inside button */
+.ms-trigger-orb {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7E5B9E 0%, #B392D6 50%, #CCA459 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 4px 12px rgba(126, 91, 158, 0.35),
+    inset 0 2px 4px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.ms-trigger-orb::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 14px;
+  height: 8px;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.85) 0%, transparent 80%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ms-trigger-icon {
+  font-size: 1.25rem;
+  color: #FFFDF9;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.25));
+  transition: transform 0.3s ease;
+}
+
+.ms-chatbot-trigger:hover .ms-trigger-icon {
+  transform: scale(1.15) rotate(12deg);
+}
+
+.ms-trigger-label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.ms-trigger-title {
+  font-family: var(--font-serif-display, 'Cormorant Garamond', serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #261E28);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.ms-trigger-sub {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.7rem;
+  color: var(--color-taupe, #8C7667);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ms-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10B981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  animation: msPulse 2s infinite;
+}
+
+@keyframes msPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* --- 2. Chatbot Window Modal Container --- */
+.ms-chatbot-window,
+.ms-chatbot-window *,
+.ms-chatbot-trigger,
+.ms-chatbot-trigger * {
+  box-sizing: border-box;
+}
+
+.ms-chatbot-window {
+  position: fixed;
+  bottom: 96px;
+  right: 28px;
+  width: 410px;
+  max-width: calc(100vw - 32px);
+  height: 620px;
+  max-height: calc(100vh - 120px);
+  background: var(--color-bg-ivory, #FDFBF8);
+  border: 1px solid rgba(204, 164, 89, 0.35);
+  border-radius: 24px;
+  box-shadow: 
+    0 24px 60px rgba(38, 30, 40, 0.18),
+    0 8px 24px rgba(126, 91, 158, 0.12),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  z-index: 9995;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.96);
+  transform-origin: bottom right;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.35s;
+  backdrop-filter: blur(12px);
+}
+
+.ms-chatbot-window.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* --- 3. Chat Window Header --- */
+.ms-chat-header {
+  background: linear-gradient(135deg, #FAF6FD 0%, #F5ECFA 50%, #FAF0EC 100%);
+  border-bottom: 1px solid rgba(204, 164, 89, 0.22);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ms-chat-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.ms-chat-crest {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7E5B9E 0%, #CCA459 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFDF8;
+  font-family: var(--font-serif-display, 'Cormorant Garamond', serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 10px rgba(126, 91, 158, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  flex-shrink: 0;
+}
+
+.ms-chat-header-info {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.ms-chat-header-info h3 {
+  font-family: var(--font-serif-display, 'Cormorant Garamond', serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #261E28);
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ms-chat-header-info p {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.72rem;
+  color: var(--color-taupe, #8C7667);
+  margin: 2px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ms-chat-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.ms-chat-btn-action {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(140, 118, 103, 0.15);
+  color: var(--color-text-secondary, #584A59);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.ms-chat-btn-action:hover {
+  background: #FFFFFF;
+  color: var(--color-text-primary, #261E28);
+  border-color: var(--color-accent-gold, #CCA459);
+  transform: scale(1.08);
+}
+
+/* --- 4. Language & Status Notice Strip --- */
+.ms-chat-substrip {
+  background: rgba(229, 213, 242, 0.28);
+  padding: 6px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(204, 164, 89, 0.12);
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.6875rem;
+  color: var(--color-text-secondary, #584A59);
+  flex-shrink: 0;
+}
+
+.ms-lang-badge {
+  background: rgba(255, 255, 255, 0.75);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 500;
+  color: var(--color-lilac-deep, #7E5B9E);
+  border: 1px solid rgba(179, 146, 214, 0.3);
+}
+
+.ms-proxy-indicator {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+/* --- 5. Message History Body --- */
+.ms-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px 18px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--color-bg-ivory, #FDFBF8);
+  scroll-behavior: smooth;
+}
+
+.ms-chat-messages::-webkit-scrollbar {
+  width: 5px;
+}
+.ms-chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(140, 118, 103, 0.2);
+  border-radius: 999px;
+}
+
+/* Message items */
+.ms-message {
+  display: flex;
+  flex-direction: column;
+  max-width: 88%;
+  animation: msMessageIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes msMessageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ms-message.bot {
+  align-self: flex-start;
+}
+
+.ms-message.user {
+  align-self: flex-end;
+}
+
+.ms-message-bubble {
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  word-wrap: break-word;
+}
+
+.ms-message.bot .ms-message-bubble {
+  background: #FAF6F0;
+  color: var(--color-text-primary, #261E28);
+  border: 1px solid rgba(140, 118, 103, 0.15);
+  border-top-left-radius: 4px;
+  box-shadow: 0 2px 8px rgba(38, 30, 40, 0.04);
+}
+
+.ms-message.user .ms-message-bubble {
+  background: linear-gradient(135deg, #E5D5F2 0%, #F4E4DC 100%);
+  color: #261E28;
+  border: 1px solid rgba(179, 146, 214, 0.35);
+  border-top-right-radius: 4px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(126, 91, 158, 0.12);
+}
+
+.ms-message-time {
+  font-size: 0.65rem;
+  color: var(--color-taupe-light, #C2B4AB);
+  margin-top: 4px;
+  padding: 0 4px;
+}
+.ms-message.user .ms-message-time {
+  text-align: right;
+}
+
+/* Rich text formatting inside assistant bubbles */
+.ms-message.bot .ms-message-bubble strong {
+  color: var(--color-lilac-deep, #7E5B9E);
+  font-weight: 600;
+}
+.ms-message.bot .ms-message-bubble ul {
+  margin: 6px 0;
+  padding-left: 18px;
+}
+.ms-message.bot .ms-message-bubble li {
+  margin-bottom: 4px;
+}
+.ms-message.bot .ms-message-bubble a {
+  color: var(--color-accent-gold, #CCA459);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* Typing Indicator (Dancing Pearls) */
+.ms-typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 18px;
+  background: #FAF6F0;
+  border: 1px solid rgba(140, 118, 103, 0.15);
+  border-radius: 18px;
+  border-top-left-radius: 4px;
+  align-self: flex-start;
+  max-width: 80px;
+}
+
+.ms-typing-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-accent-gold, #CCA459);
+  animation: msBounce 1.4s infinite ease-in-out both;
+}
+
+.ms-typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.ms-typing-dot:nth-child(2) { animation-delay: -0.16s; background: var(--color-lilac-accent, #B392D6); }
+.ms-typing-dot:nth-child(3) { animation-delay: 0s; background: var(--color-lilac-deep, #7E5B9E); }
+
+@keyframes msBounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* --- 6. Quick Suggestion Prompt Chips --- */
+.ms-quick-prompts {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 8px 16px 12px;
+  background: var(--color-bg-ivory, #FDFBF8);
+  flex-shrink: 0;
+  scrollbar-width: none;
+}
+.ms-quick-prompts::-webkit-scrollbar {
+  display: none;
+}
+
+.ms-prompt-chip {
+  flex-shrink: 0;
+  background: #FFFFFF;
+  border: 1px solid rgba(179, 146, 214, 0.35);
+  color: var(--color-text-secondary, #584A59);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(38, 30, 40, 0.04);
+}
+
+.ms-prompt-chip:hover {
+  background: var(--color-lilac-light, #F2E9F7);
+  color: var(--color-lilac-deep, #7E5B9E);
+  border-color: var(--color-accent-gold, #CCA459);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(126, 91, 158, 0.12);
+}
+
+/* --- 7. Chat Input Footer --- */
+.ms-chat-footer {
+  background: #FFFFFF;
+  border-top: 1px solid rgba(204, 164, 89, 0.2);
+  padding: 12px 16px;
+  flex-shrink: 0;
+}
+
+.ms-chat-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-bg-cream, #FAF6F0);
+  border: 1px solid rgba(140, 118, 103, 0.18);
+  border-radius: 999px;
+  padding: 4px 6px 4px 16px;
+  transition: all 0.25s ease;
+}
+
+.ms-chat-form:focus-within {
+  border-color: var(--color-accent-gold, #CCA459);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(204, 164, 89, 0.15);
+}
+
+.ms-chat-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.85rem;
+  color: var(--color-text-primary, #261E28);
+  outline: none;
+  padding: 8px 0;
+}
+
+.ms-chat-input::placeholder {
+  color: var(--color-taupe, #8C7667);
+  opacity: 0.75;
+}
+
+.ms-chat-send-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7E5B9E 0%, #CCA459 100%);
+  border: none;
+  color: #FFFDF9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(126, 91, 158, 0.25);
+}
+
+.ms-chat-send-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 5px 12px rgba(204, 164, 89, 0.35);
+}
+
+.ms-chat-send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ms-chat-caption {
+  text-align: center;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.65rem;
+  color: var(--color-taupe, #8C7667);
+  margin-top: 8px;
+  letter-spacing: 0.02em;
+}
+
+/* --- 8. Worker URL Setup Modal (Helper) --- */
+.ms-proxy-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(38, 30, 40, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s ease;
+}
+
+.ms-proxy-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ms-proxy-modal {
+  background: #FFFFFF;
+  border: 1px solid var(--color-accent-gold, #CCA459);
+  border-radius: 18px;
+  padding: 20px;
+  max-width: 350px;
+  width: 100%;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.ms-proxy-modal h4 {
+  font-family: var(--font-serif-display, 'Cormorant Garamond', serif);
+  font-size: 1.2rem;
+  margin: 0 0 8px;
+  color: var(--color-text-primary, #261E28);
+}
+
+.ms-proxy-modal p {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary, #584A59);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.ms-proxy-modal input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(140, 118, 103, 0.3);
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+.ms-proxy-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.ms-proxy-modal-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  border: none;
+}
+
+.ms-proxy-modal-btn.primary {
+  background: var(--color-lilac-deep, #7E5B9E);
+  color: #fff;
+}
+.ms-proxy-modal-btn.secondary {
+  background: #eee;
+  color: #333;
+}
+
+/* --- 9. Mobile Responsive Styling --- */
+@media (max-width: 640px) {
+  .ms-chatbot-trigger {
+    bottom: 20px;
+    right: 18px;
+    padding: 6px 14px 6px 8px;
+  }
+  .ms-trigger-orb {
+    width: 38px;
+    height: 38px;
+  }
+  .ms-trigger-title {
+    font-size: 0.95rem;
+  }
+  .ms-trigger-sub {
+    font-size: 0.65rem;
+  }
+  .ms-chatbot-window,
+  .ms-chatbot-window.open {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: 100% !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border: none !important;
+    z-index: 99999 !important;
+    transform: none !important;
+    margin: 0 !important;
+  }
+  .ms-chat-header {
+    padding: 12px 14px;
+    padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  }
+  .ms-chat-header-brand {
+    gap: 8px;
+  }
+  .ms-chat-crest {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+  }
+  .ms-chat-header-info h3 {
+    font-size: 1.05rem;
+  }
+  .ms-chat-header-info p {
+    font-size: 0.68rem;
+  }
+  .ms-chat-substrip {
+    padding: 6px 14px;
+  }
+  .ms-chat-messages {
+    padding: 14px 14px 8px;
+  }
+  .ms-quick-prompts {
+    padding: 6px 14px 10px;
+  }
+  .ms-chat-footer {
+    padding: 10px 14px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+}
