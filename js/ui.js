@@ -139,6 +139,17 @@ const UI = {
         }
       });
     });
+
+    // 4. Global Resilient Image Error Fallback Handler
+    window.addEventListener('error', (e) => {
+      if (e.target && e.target.tagName === 'IMG') {
+        const fallback = 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=85';
+        if (e.target.src !== fallback) {
+          e.target.onerror = null;
+          e.target.src = fallback;
+        }
+      }
+    }, true);
   }
 };
 

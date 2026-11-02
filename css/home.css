@@ -270,6 +270,171 @@
   }
 }
 
+/* --- Editorial Full-Width Brand Film Section (Made Slowly. Made Beautifully.) --- */
+.editorial-film-section {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: var(--color-espresso);
+  border-top: var(--border-delicate);
+  border-bottom: var(--border-delicate);
+  overflow: hidden;
+}
+
+.editorial-film-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.editorial-film-media-frame {
+  position: relative;
+  width: 100%;
+  min-height: clamp(480px, 62vh, 680px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.editorial-film-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.editorial-film-scrim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(38, 30, 40, 0.35) 0%, rgba(38, 30, 40, 0.76) 85%),
+              linear-gradient(to top, rgba(38, 30, 40, 0.9) 0%, rgba(38, 30, 40, 0.25) 50%, rgba(38, 30, 40, 0.7) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.editorial-film-overlay {
+  position: relative;
+  z-index: 3;
+  max-width: 860px;
+  width: 100%;
+  padding: var(--spacing-12) var(--spacing-6);
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0 auto;
+}
+
+.editorial-film-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-accent-gold-light);
+  margin-bottom: var(--spacing-5);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.editorial-film-badge .badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-accent-gold);
+  animation: pulseGold 2s infinite;
+}
+
+@keyframes pulseGold {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(204, 164, 89, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(204, 164, 89, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(204, 164, 89, 0); }
+}
+
+.editorial-film-heading {
+  font-family: var(--font-serif-display);
+  font-size: clamp(2.4rem, 5.5vw, 4.25rem);
+  font-weight: 500;
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+  color: #FFFFFF;
+  margin-bottom: var(--spacing-4);
+  text-shadow: 0 3px 20px rgba(0, 0, 0, 0.45);
+}
+
+.editorial-film-description {
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  line-height: 1.75;
+  color: rgba(253, 251, 248, 0.9);
+  max-width: 640px;
+  margin: 0 auto var(--spacing-8);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.editorial-film-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+.btn-film-sound {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: var(--radius-pill);
+  color: #FFFFFF;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-film-sound:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: var(--color-accent-gold);
+  color: var(--color-accent-gold-light);
+}
+
+@media (max-width: 768px) {
+  .editorial-film-media-frame {
+    min-height: 480px;
+  }
+  .editorial-film-overlay {
+    padding: var(--spacing-8) var(--spacing-4);
+  }
+  .editorial-film-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .editorial-film-actions .btn,
+  .editorial-film-actions .btn-film-sound {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* --- Cinema / Atelier in Motion Section --- */
 .atelier-cinema-section {
   background-color: var(--color-espresso);
@@ -277,6 +442,44 @@
   padding: clamp(4rem, 8vw, var(--spacing-32)) 0;
   position: relative;
   overflow: hidden;
+}
+
+.cinema-chapter-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-6);
+  flex-wrap: wrap;
+}
+
+.cinema-chapter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-full);
+  color: var(--color-taupe-light);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cinema-chapter-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.cinema-chapter-btn.active {
+  background: var(--color-accent-gold);
+  border-color: var(--color-accent-gold);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(204, 164, 89, 0.35);
 }
 
 .atelier-cinema-container {

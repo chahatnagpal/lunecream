@@ -129,7 +129,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // 6. Atelier Cinema Feature Section Video Controls (Play/Pause & Sound)
+  // 6. Editorial Brand Film Sound Toggle
+  const editorialVideo = document.getElementById('editorial-film-video');
+  const editorialSoundBtn = document.getElementById('btn-editorial-sound-toggle');
+  const editorialSoundIcon = document.getElementById('editorial-sound-icon');
+  const editorialSoundText = document.getElementById('editorial-sound-text');
+
+  if (editorialVideo && editorialSoundBtn) {
+    editorialSoundBtn.addEventListener('click', () => {
+      if (editorialVideo.muted) {
+        editorialVideo.muted = false;
+        if (editorialSoundIcon) editorialSoundIcon.textContent = '🔊';
+        if (editorialSoundText) editorialSoundText.textContent = 'Sound On';
+        editorialSoundBtn.style.background = 'rgba(204, 164, 89, 0.35)';
+        editorialSoundBtn.style.borderColor = 'var(--color-accent-gold)';
+      } else {
+        editorialVideo.muted = true;
+        if (editorialSoundIcon) editorialSoundIcon.textContent = '🔇';
+        if (editorialSoundText) editorialSoundText.textContent = 'Sound Off';
+        editorialSoundBtn.style.background = '';
+        editorialSoundBtn.style.borderColor = '';
+      }
+    });
+  }
+
+  // 7. Atelier Cinema Feature Section Video Controls & Chapter Navigation
   const cinemaVideo = document.getElementById('atelier-cinema-video');
   const cinemaPlayBtn = document.getElementById('cinema-play-toggle');
   const cinemaPlayIcon = document.getElementById('cinema-play-icon');
@@ -137,6 +161,30 @@ document.addEventListener('DOMContentLoaded', async () => {
   const cinemaSoundBtn = document.getElementById('cinema-sound-toggle');
   const cinemaSoundIcon = document.getElementById('cinema-sound-icon');
   const cinemaSoundText = document.getElementById('cinema-sound-text');
+  const chapterButtons = document.querySelectorAll('.cinema-chapter-btn');
+
+  // Chapter selector tabs
+  if (cinemaVideo && chapterButtons.length > 0) {
+    chapterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        chapterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const videoSrc = btn.getAttribute('data-video');
+        const posterSrc = btn.getAttribute('data-poster');
+
+        if (videoSrc) {
+          const wasPlaying = !cinemaVideo.paused;
+          cinemaVideo.src = videoSrc;
+          if (posterSrc) cinemaVideo.poster = posterSrc;
+          cinemaVideo.load();
+          cinemaVideo.play().catch(e => console.log('Chapter playback error:', e));
+          if (cinemaPlayIcon) cinemaPlayIcon.textContent = '⏸';
+          if (cinemaPlayText) cinemaPlayText.textContent = 'Pause';
+        }
+      });
+    });
+  }
 
   if (cinemaVideo && cinemaPlayBtn) {
     cinemaPlayBtn.addEventListener('click', () => {
@@ -166,7 +214,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // 7. Newsletter Subscription Form Handler
+  // 8. Newsletter Subscription Form Handler
   const newsletterForm = document.getElementById('newsletter-form');
   if (newsletterForm) {
     newsletterForm.addEventListener('submit', (e) => {

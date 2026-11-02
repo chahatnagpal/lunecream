@@ -32,7 +32,7 @@ class DatabaseClient {
   }
 
   _initLocalStore() {
-    const CURRENT_STORE_VERSION = '2.2-stitch-pastel';
+    const CURRENT_STORE_VERSION = '2.4-stitch-pastel';
     const savedVersion = localStorage.getItem(window.APP_CONFIG.STORAGE_STORE_VERSION);
     const existing = localStorage.getItem(window.APP_CONFIG.STORAGE_MOCK_DB);
 
@@ -52,7 +52,44 @@ class DatabaseClient {
 
   _getLocalDb() {
     const raw = localStorage.getItem(window.APP_CONFIG.STORAGE_MOCK_DB);
-    return raw ? JSON.parse(raw) : { categories: [], products: [], orders: [], order_items: [], custom_requests: [] };
+    const db = raw ? JSON.parse(raw) : { categories: [], products: [], orders: [], order_items: [], custom_requests: [] };
+
+    // Auto-heal any stale 404 image URLs
+    let healed = false;
+    if (db.categories) {
+      db.categories.forEach(c => {
+        if (c.image_url && c.image_url.includes('1535141192574-5d4897c13136')) {
+          c.image_url = 'https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=85';
+          healed = true;
+        }
+      });
+    }
+    if (db.products) {
+      db.products.forEach(p => {
+        if (p.image_url && p.image_url.includes('1535141192574-5d4897c13136')) {
+          p.image_url = (p.slug && p.slug.includes('lilac'))
+            ? 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=1000&q=85'
+            : 'https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=1000&q=85';
+          healed = true;
+        }
+        if (p.gallery_images && Array.isArray(p.gallery_images)) {
+          p.gallery_images = p.gallery_images.map(img => {
+            if (img.includes('1535141192574-5d4897c13136')) {
+              healed = true;
+              return (p.slug && p.slug.includes('lilac'))
+                ? 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=1000&q=85'
+                : 'https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=1000&q=85';
+            }
+            return img;
+          });
+        }
+      });
+    }
+    if (healed) {
+      this._saveLocalDb(db);
+    }
+
+    return db;
   }
 
   _saveLocalDb(db) {
